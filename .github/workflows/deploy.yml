@@ -1,0 +1,140 @@
+name: CI/CD - Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  BACKEND_IMAGE: ${{ github.repository }}/todo-backend
+  FRONTEND_IMAGE: ${{ github.repository }}/todo-frontend
+
+jobs:
+  # ============================================
+  # Build and Test Backend
+  # ============================================
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install UV
+        run: pip install uv
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run linter
+        run: uv run ruff check .
+
+      - name: Run tests
+        run: uv run pytest -v
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./test.db
+          BETTER_AUTH_SECRET: test-secret
+
+  # ============================================
+  # Build and Test Frontend
+  # ============================================
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ./frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+  # ============================================
+  # Build and Push Docker Images
+  # ============================================
+  docker:
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE }}:latest
+
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE }}:latest
+
+  # ============================================
+  # Deploy to Kubernetes (Manual Approval)
+  # ============================================
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.12.0
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Deploy with Helm
+        run: |
+          helm upgrade --install todo-app ./helm/todo-evolution \
+            --set secrets.databaseUrl="${{ secrets.DATABASE_URL }}" \
+            --set secrets.betterAuthSecret="${{ secrets.BETTER_AUTH_SECRET }}" \
+            --set secrets.openaiApiKey="${{ secrets.OPENAI_API_KEY }}" \
+            --set backend.image.repository=${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE }} \
+            --set frontend.image.repository=${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE }}

@@ -1,0 +1,53 @@
+# Default values for todo-evolution helm chart
+
+replicaCount: 1
+
+# Backend (FastAPI)
+backend:
+  name: todo-backend
+  image:
+    repository: todo-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  port: 8000
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Frontend (Next.js)
+frontend:
+  name: todo-frontend
+  image:
+    repository: todo-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  port: 3000
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Secrets - CONFIGURE THESE!
+secrets:
+  databaseUrl: "postgresql+asyncpg://user:pass@host/db"
+  betterAuthSecret: "your-better-auth-secret"
+  openaiApiKey: "sk-your-openai-api-key"
+
+# Ingress
+ingress:
+  enabled: true
+  className: nginx
+  host: todo.local
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+# Service
+service:
+  type: ClusterIP

@@ -1,0 +1,16 @@
+apiVersion: v2
+name: todo-evolution
+description: Evolution of Todo - Full Stack AI Chatbot Application
+type: application
+version: 0.3.0
+appVersion: "1.0.0"
+
+keywords:
+  - todo
+  - fastapi
+  - nextjs
+  - ai
+  - chatbot
+
+maintainers:
+  - name: Tasmeer Jamali

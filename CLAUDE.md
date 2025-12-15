@@ -1,104 +1,93 @@
-# CLAUDE.md
+# Todo App - Hackathon II
 
-> This file provides instructions for Claude Code (AI coding assistant) when working on this project.
-
----
-
-## Project Overview
-
-**Phase I**: Todo In-Memory Python Console Application  
-**Methodology**: Spec-Driven Development (SDD) with Spec-Kit Plus  
-**Tech Stack**: Python 3.13+, UV
+> This is a monorepo using GitHub Spec-Kit for spec-driven development.
 
 ---
 
-## Commands
+## Spec-Kit Structure
 
-```bash
-# Run the application
-run: uv run python -m src.main
+Specifications are organized in `/specs`:
 
-# Run tests
-test: uv run pytest
+| Directory | Purpose |
+|-----------|---------|
+| `/specs/overview.md` | Project overview |
+| `/specs/features/` | Feature specs (what to build) |
+| `/specs/api/` | API endpoint and MCP tool specs |
+| `/specs/database/` | Schema and model specs |
+| `/specs/ui/` | Component and page specs |
 
-# Lint the code
-lint: uv run ruff check .
+---
 
-# Format the code
-format: uv run ruff format .
+## How to Use Specs
 
-# Type check
-typecheck: uv run mypy .
-```
+1. **Always read relevant spec before implementing**
+2. Reference specs with: `@specs/features/task-crud.md`
+3. Update specs if requirements change
 
 ---
 
 ## Project Structure
 
 ```
-Hackathon 2 PH 1/
-├── .specify/
-│   └── memory/
-│       └── constitution.md    # Project principles (READ FIRST)
+hackathon-todo/
+├── .spec-kit/
+│   └── config.yaml         # Spec-Kit configuration
 ├── specs/
-│   └── 001-phase1.md          # Feature specifications
-├── src/
-│   ├── __init__.py
-│   ├── main.py                # Entry point
-│   ├── models.py              # Task dataclass
-│   ├── storage.py             # InMemoryStorage
-│   ├── cli.py                 # User interface
-│   └── exceptions.py          # Custom exceptions
-├── tests/
-│   └── ...                    # Test files
-├── pyproject.toml             # UV project config
-├── README.md                  # User documentation
-└── CLAUDE.md                  # This file
+│   ├── overview.md
+│   ├── features/
+│   │   ├── task-crud.md
+│   │   ├── authentication.md
+│   │   └── chatbot.md
+│   ├── api/
+│   │   ├── rest-endpoints.md
+│   │   └── mcp-tools.md
+│   ├── database/
+│   │   └── schema.md
+│   └── ui/
+│       ├── components.md
+│       └── pages.md
+├── frontend/               # Next.js 16+ app
+│   └── CLAUDE.md
+├── backend/                # FastAPI server
+│   └── CLAUDE.md
+├── CLAUDE.md               # This file
+└── README.md
 ```
 
 ---
 
 ## Development Workflow
 
-1. **Read Constitution First**: `.specify/memory/constitution.md`
-2. **Follow Specifications**: `specs/001-phase1.md`
-3. **Generate Code**: Based on specs, not from scratch
-4. **Run Tests**: `uv run pytest`
-5. **Lint & Format**: `uv run ruff check . && uv run ruff format .`
+1. Read spec: `@specs/features/[feature].md`
+2. Implement backend: `@backend/CLAUDE.md`
+3. Implement frontend: `@frontend/CLAUDE.md`
+4. Test and iterate
 
 ---
 
-## Key Principles
+## Commands
 
-- **No External Runtime Dependencies**: Use Python stdlib only
-- **Type Hints Required**: All functions and class attributes
-- **In-Memory Storage**: No file I/O or databases
-- **Clean Code**: Follow PEP 8, use Ruff for formatting
-- **Test Coverage**: Aim for 80%+ on core logic
+```bash
+# Frontend
+cd frontend && npm run dev
 
----
+# Backend
+cd backend && uv run uvicorn src.main:app --reload
 
-## Constitution Reference
-
-The project constitution at `.specify/memory/constitution.md` defines:
-- Naming conventions
-- Allowed/forbidden libraries
-- Architecture patterns
-- Testing standards
-
-**Always reference the constitution before making changes.**
+# Both (Docker)
+docker-compose up
+```
 
 ---
 
-## Spec-Kit Plus Commands (Simulated)
+## Phase Specifications
 
-Since this project simulates Spec-Kit Plus:
-- `/sp.constitution` → `.specify/memory/constitution.md`
-- `/sp.specify` → `specs/001-phase1.md`
-- `/sp.plan` → Implementation plan (in specs)
-- `/sp.tasks` → Task breakdown
-- `/sp.implement` → Code generation from specs
+| Phase | Spec File |
+|-------|-----------|
+| I | `specs/001-phase1.md` |
+| II | `specs/features/task-crud.md`, `specs/features/authentication.md` |
+| III | `specs/features/chatbot.md`, `specs/api/mcp-tools.md` |
 
 ---
 
-*Hackathon II - Evolution of Todo*
+*Spec-Kit Plus | Evolution of Todo*
