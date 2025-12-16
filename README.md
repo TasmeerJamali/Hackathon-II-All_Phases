@@ -238,6 +238,8 @@ evolution-of-todo/
 - ✅ Recurring task automation
 - ✅ Cron-based reminders (every 5 min)
 - ✅ Audit logging
+- ✅ All 5 Dapr Building Blocks (Pub/Sub, State, Bindings, Service Invocation, Secrets)
+- 📚 [Architecture](./docs/ARCHITECTURE.md) | [Monitoring](./docs/MONITORING.md) | [Load Testing](./docs/LOAD-TESTING.md)
 
 ---
 
