@@ -1,10 +1,59 @@
 # Kubernetes Deployment Guide
 
+> Phase IV: Local Kubernetes Deployment with AI-Powered Tools
+
 ## Prerequisites
 
-- Docker Desktop or Minikube
-- kubectl CLI
+- Docker Desktop 4.53+ (with Gordon AI) or Minikube
+- kubectl CLI + kubectl-ai plugin
 - Helm 3+
+- kagent (optional)
+
+---
+
+## AI-Powered Kubernetes Tools
+
+### kubectl-ai (AI-Powered kubectl)
+
+```bash
+# Install kubectl-ai
+kubectl krew install ai
+export OPENAI_API_KEY="your-key"
+
+# Example commands for our project
+kubectl ai "deploy backend with image todoevolutionacr.azurecr.io/backend:v1"
+kubectl ai "scale backend deployment to 3 replicas"
+kubectl ai "show logs from backend pod"
+kubectl ai "why is my pod not starting"
+kubectl ai "create a LoadBalancer service for backend on port 8000"
+```
+
+### kagent (Kubernetes AI Agent)
+
+```bash
+# Install kagent
+pip install kagent
+
+# Example commands
+kagent analyze cluster          # Health check
+kagent diagnose pod backend-xxx # Troubleshoot
+kagent optimize deployment backend # Resource optimization
+kagent security-scan            # Security audit
+```
+
+### Docker AI Gordon
+
+Enable in Docker Desktop: Settings → Features in Development → Docker AI
+
+```bash
+docker ai "optimize my backend/Dockerfile"
+docker ai "why is my container using so much memory"
+docker ai "best practices for Python FastAPI containers"
+```
+
+📚 **Full documentation:** [docs/AI-K8S-TOOLS.md](docs/AI-K8S-TOOLS.md)
+
+---
 
 ## Option 1: Minikube Deployment
 

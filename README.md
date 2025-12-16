@@ -229,6 +229,8 @@ evolution-of-todo/
 - ✅ Multi-stage Dockerfiles
 - ✅ Helm charts with configurable secrets
 - ✅ Minikube deployment guide
+- ✅ AI-Powered Tools: kubectl-ai, kagent, Docker Gordon
+- 📚 [AI Tools Guide](./docs/AI-K8S-TOOLS.md) | [Deployment Guide](./DEPLOYMENT.md)
 
 ### Phase V: Event-Driven
 - ✅ Dapr pub/sub (no direct Kafka imports)
