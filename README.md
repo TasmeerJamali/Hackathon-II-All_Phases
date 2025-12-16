@@ -276,6 +276,48 @@ evolution-of-todo/
 
 ---
 
+## 🎁 Bonus Features (+600 Points)
+
+| Bonus | Points | Status | Documentation |
+|-------|--------|--------|---------------|
+| **Reusable Intelligence** | +200 | ✅ | 5 Subagents, 2 Agent Skills |
+| **Cloud-Native Blueprints** | +200 | ✅ | 2 Deployable Blueprints |
+| **Multi-language Support** | +100 | ✅ | English + اردو (RTL) |
+| **Voice Commands** | +200 | ✅ | Web Speech API + TTS |
+
+📚 **Full Documentation:** [docs/BONUS-FEATURES.md](./docs/BONUS-FEATURES.md)
+
+### Subagents & Skills
+- `@spec-validator` - Validates implementation matches specs
+- `@api-test-gen` - Generates pytest tests from API specs
+- `@dockerfile-opt` - Analyzes and optimizes Dockerfiles
+- `@schema-migration` - Generates DB migrations
+- `@event-schema-gen` - Generates event models
+
+### Blueprints
+```bash
+# Deploy complete app
+./blueprints/todo-app/deploy.sh --domain todo.example.com
+
+# Generate new microservice
+./blueprints/event-service/generate.sh --name notification-service
+```
+
+### Multi-language (i18n)
+- English (en) + Urdu (ur)
+- RTL support for Urdu
+- Language toggle component
+
+### Voice Commands
+```
+"Add a task to buy groceries"
+"ٹاسک شامل کریں گروسری خریدنا"
+"What's pending?"
+"کیا باقی ہے؟"
+```
+
+---
+
 ## 📄 License
 
 MIT License - See [LICENSE](./LICENSE)

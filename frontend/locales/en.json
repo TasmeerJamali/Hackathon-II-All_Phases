@@ -1,0 +1,102 @@
+{
+    "app": {
+        "name": "Todo Evolution",
+        "tagline": "AI-Powered Task Management"
+    },
+    "nav": {
+        "dashboard": "Dashboard",
+        "chat": "AI Chat",
+        "login": "Login",
+        "signup": "Sign Up",
+        "logout": "Logout"
+    },
+    "tasks": {
+        "title": "Tasks",
+        "add": "Add Task",
+        "addPlaceholder": "What needs to be done?",
+        "description": "Description",
+        "descriptionPlaceholder": "Add more details...",
+        "priority": "Priority",
+        "dueDate": "Due Date",
+        "reminder": "Reminder",
+        "completed": "Completed",
+        "pending": "Pending",
+        "all": "All",
+        "noTasks": "No tasks yet. Add one above!",
+        "loading": "Loading tasks...",
+        "delete": "Delete",
+        "edit": "Edit",
+        "complete": "Mark Complete",
+        "uncomplete": "Mark Incomplete",
+        "search": "Search tasks...",
+        "filter": "Filter",
+        "sort": "Sort",
+        "created": "Created",
+        "updated": "Updated"
+    },
+    "priorities": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+    },
+    "recurrence": {
+        "none": "None",
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly"
+    },
+    "chat": {
+        "title": "AI Assistant",
+        "subtitle": "Powered by AI",
+        "placeholder": "Type a message...",
+        "send": "Send",
+        "thinking": "Thinking...",
+        "startConversation": "Start a conversation",
+        "suggestions": {
+            "add": "Add a task to buy groceries",
+            "pending": "What's pending?",
+            "complete": "Mark task 1 as done"
+        }
+    },
+    "auth": {
+        "login": "Sign In",
+        "signup": "Create Account",
+        "email": "Email address",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "forgotPassword": "Forgot password?",
+        "noAccount": "Don't have an account?",
+        "hasAccount": "Already have an account?",
+        "or": "Or",
+        "loginWith": "Sign in with",
+        "signupWith": "Sign up with"
+    },
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "yes": "Yes",
+        "no": "No",
+        "error": "Error",
+        "success": "Success",
+        "loading": "Loading...",
+        "back": "Back",
+        "next": "Next",
+        "submit": "Submit"
+    },
+    "errors": {
+        "required": "This field is required",
+        "email": "Please enter a valid email",
+        "password": "Password must be at least 8 characters",
+        "generic": "Something went wrong. Please try again.",
+        "unauthorized": "Please log in to continue",
+        "notFound": "Not found"
+    },
+    "voice": {
+        "start": "Start Voice Input",
+        "stop": "Stop Recording",
+        "listening": "Listening...",
+        "notSupported": "Voice input not supported in this browser"
+    }
+}
