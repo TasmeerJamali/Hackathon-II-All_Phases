@@ -22,6 +22,7 @@ import {
     LogOut,
     Loader2,
     Search,
+    MessageCircle,
 } from "lucide-react";
 import { api, Task, CreateTaskInput } from "@/lib/api";
 
@@ -140,13 +141,22 @@ export default function DashboardPage() {
             <header className="bg-white shadow-sm">
                 <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
                     <h1 className="text-2xl font-bold text-primary">Todo Evolution</h1>
-                    <button
-                        onClick={handleLogout}
-                        className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
-                    >
-                        <LogOut className="h-5 w-5" />
-                        Logout
-                    </button>
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => router.push("/chat")}
+                            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all shadow-sm"
+                        >
+                            <MessageCircle className="h-5 w-5" />
+                            Chat with AI
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
+                        >
+                            <LogOut className="h-5 w-5" />
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </header>
 
