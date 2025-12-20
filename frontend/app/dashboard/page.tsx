@@ -25,6 +25,7 @@ import {
     MessageCircle,
 } from "lucide-react";
 import { api, Task, CreateTaskInput } from "@/lib/api";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -149,6 +150,7 @@ export default function DashboardPage() {
                             <MessageCircle className="h-5 w-5" />
                             Chat with AI
                         </button>
+                        <LanguageToggle />
                         <button
                             onClick={handleLogout}
                             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"

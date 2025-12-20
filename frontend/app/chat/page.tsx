@@ -11,6 +11,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Send, Loader2, ArrowLeft, MessageSquare, Bot, User } from "lucide-react";
 import { api } from "@/lib/api";
+import LanguageToggle from "@/components/LanguageToggle";
 
 interface Message {
     id: string;
@@ -108,6 +109,9 @@ export default function ChatPage() {
                         <p className="text-xs text-gray-500">Powered by AI</p>
                     </div>
                 </div>
+                <div className="ml-auto">
+                    <LanguageToggle />
+                </div>
             </header>
 
             {/* Messages */}
@@ -134,8 +138,8 @@ export default function ChatPage() {
                     >
                         <div
                             className={`max-w-[80%] rounded-2xl px-4 py-3 ${msg.role === "user"
-                                    ? "bg-primary text-white rounded-br-md"
-                                    : "bg-white shadow-sm border border-gray-100 rounded-bl-md"
+                                ? "bg-primary text-white rounded-br-md"
+                                : "bg-white shadow-sm border border-gray-100 rounded-bl-md"
                                 }`}
                         >
                             <div className="flex items-center gap-2 mb-1">
