@@ -1,14 +1,16 @@
 # Default values for todo-evolution helm chart
+# Phase IV: Local Kubernetes - Cloud Native
 
-replicaCount: 1
+# Replica count for high availability
+replicaCount: 2
 
 # Backend (FastAPI)
 backend:
   name: todo-backend
   image:
-    repository: todo-backend
-    tag: latest
-    pullPolicy: IfNotPresent
+    repository: tasmeer24/todo-backend
+    tag: v10-groq-fix
+    pullPolicy: Always
   port: 8000
   resources:
     limits:
@@ -22,9 +24,9 @@ backend:
 frontend:
   name: todo-frontend
   image:
-    repository: todo-frontend
+    repository: tasmeer24/todo-frontend
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   port: 3000
   resources:
     limits:
@@ -34,11 +36,17 @@ frontend:
       cpu: 100m
       memory: 128Mi
 
+# MCP Server (integrated in backend for this implementation)
+# The MCP tools are part of the backend service
+mcp:
+  enabled: false  # MCP integrated into backend
+  port: 8001
+
 # Secrets - CONFIGURE THESE!
 secrets:
   databaseUrl: "postgresql+asyncpg://user:pass@host/db"
   betterAuthSecret: "your-better-auth-secret"
-  openaiApiKey: "sk-your-openai-api-key"
+  groqApiKey: "your-groq-api-key"
 
 # Ingress
 ingress:

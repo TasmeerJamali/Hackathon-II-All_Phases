@@ -38,11 +38,11 @@ spec:
                 secretKeyRef:
                   name: todo-secrets
                   key: BETTER_AUTH_SECRET
-            - name: OPENAI_API_KEY
+            - name: GROQ_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: todo-secrets
-                  key: OPENAI_API_KEY
+                  key: GROQ_API_KEY
             - name: CORS_ORIGINS
               value: "http://localhost:3000,http://{{ .Values.ingress.host }}"
           resources:
