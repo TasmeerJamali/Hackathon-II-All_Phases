@@ -19,6 +19,16 @@
 
 ---
 
+## 🔗 Live Demo
+
+| Component | URL |
+|-----------|-----|
+| **Frontend** | [https://frontend-one-roan-72.vercel.app](https://frontend-one-roan-72.vercel.app) |
+| **Backend API** | http://135.235.248.0 (Azure AKS) |
+| **GitHub Repo** | [https://github.com/TasmeerJamali/Hackathon-II-Phase-1](https://github.com/TasmeerJamali/Hackathon-II-Phase-1) |
+
+---
+
 ## 📖 The Evolution Story
 
 This project demonstrates how a simple todo app can evolve through **5 architectural phases** while maintaining strict **Spec-Driven Development** methodology.
@@ -27,7 +37,7 @@ This project demonstrates how a simple todo app can evolve through **5 architect
 |-------|-----------|------------|
 | **I** | Console CLI | Python 3.13, In-Memory Storage |
 | **II** | Full-Stack Web | Next.js 15, FastAPI, Neon PostgreSQL, Better Auth JWT |
-| **III** | AI Chatbot | OpenAI Agents SDK, MCP Tools, Stateless Architecture |
+| **III** | AI Chatbot | Groq API (Llama 3.3 70B), MCP Tools, Stateless Architecture |
 | **IV** | Kubernetes | Docker, Helm Charts, Minikube |
 | **V** | Event-Driven | Dapr Sidecars, Redpanda (Kafka), Recurring Tasks |
 
@@ -132,8 +142,8 @@ structure:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-repo/evolution-of-todo.git
-cd evolution-of-todo
+git clone https://github.com/TasmeerJamali/Hackathon-II-Phase-1.git
+cd Hackathon-II-Phase-1
 
 # 2. Create environment file
 cp backend/.env.example .env
@@ -141,7 +151,7 @@ cp backend/.env.example .env
 # 3. Edit .env with your credentials
 # DATABASE_URL=postgresql+asyncpg://...
 # BETTER_AUTH_SECRET=your-secret
-# OPENAI_API_KEY=sk-...
+# GROQ_API_KEY=gsk-...
 
 # 4. Start all services (includes Redpanda)
 docker-compose up --build
